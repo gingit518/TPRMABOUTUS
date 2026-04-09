@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - RiskQ TPRM Exchange</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 0 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: #1f2937;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.625rem 1rem;
+            border-radius: 0.375rem;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-link {
+            background: none;
+            color: #2563eb;
+        }
+
+        .btn-link:hover {
+            color: #1d4ed8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #6b7280;
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #1f2937;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            gap: 3rem;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .grid-3 {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 1024px) {
+            .grid-3 {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .team-member {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 2.5rem;
+            transition: all 0.3s;
+        }
+
+        .team-member:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #2563eb;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-certs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cert-badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .team-bio {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Credentials Grid */
+        .credentials-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .credentials-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        .credential-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 2rem;
+        }
+
+        .credential-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .credential-card ul {
+            list-style: none;
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .credential-card li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .credential-card li:before {
+            content: "✓";
+            color: #2563eb;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Values Grid */
+        .values-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .value-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #1f2937;
+        }
+
+        .value-item p {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Timeline */
+        .timeline {
+            max-width: 900px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-date {
+            color: #2563eb;
+            font-weight: 600;
+            min-width: 120px;
+            flex-shrink: 0;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .timeline-content p {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Background Colors */
+        .bg-gray {
+            background: #f9fafb;
+        }
+
+        .bg-blue {
+            background: #eff6ff;
+        }
+
+        /* Text Colors */
+        .text-gray {
+            color: #6b7280;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 2rem;
+        }
+
+        .card p {
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            }
+        }
+
+        .footer-section h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
+            font-size: 0.875rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #d1d5db;
+            font-size: 0.875rem;
+        }
+
+        /* Content Styles */
+        .content p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #2563eb;
+            margin: 2rem 0;
+        }
+
+        .highlight p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">RiskQ TPRM Exchange</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#">How It Works</a>
+                <a href="#">Marketplace</a>
+                <a href="#">Pricing</a>
+                <a href="about.html">About</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-link">Sign In</button>
+                <button class="btn btn-primary">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Built by Industry Leaders, Trusted by Enterprises</h1>
+            <p>RiskQ TPRM Exchange was founded by Ariel Evans—an Amazon best-selling author, CISA/CDPSE certified professional, and serial entrepreneur with two successful exits (BMC and Kleiner Perkins) with over 20 years of cybersecurity and third-party risk management experience.</p>
+        </div>
+    </section>
+
+    <!-- Key Stats -->
+    <section>
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Years Industry Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Verified Vendors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Enterprise Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$900M</div>
+                    <div class="stat-label">Total Cost Savings</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Team -->
+    <section class="bg-gray">
+        <div class="container">
+            <h2 class="text-center">Leadership Team</h2>
+            <p class="text-center text-gray" style="margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto;">Industry veterans with decades of combined experience in cybersecurity, risk management, and enterprise programs.</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="0e4768ff01affcfd.jpeg" alt="Ariel Evans" style="width: 100%; height: 250px; object-fit: cover; border-radius: 0.375rem; margin-bottom: 1rem;">
+                    <h3>Ariel Evans</h3>
+                    <div class="team-role">Founder & CEO</div>
+                    <div class="team-certs">
+                        <span class="cert-badge">CISA</span>
+                        <span class="cert-badge">CDPSE</span>
+                        <span class="cert-badge">Amazon Best Seller</span>
+                    </div>
+                    <p class="team-bio">Serial Entrepreneur with two successful exits: BMC and Kleiner Perkins • Author of "Navigating Supply Chain Cyber Risk" (Taylor & Francis) • Former CISO and risk management leader at Fortune 500 organizations</p>
+                </div>
+                <div class="team-member">
+                    <img src="Norman_Levine.jpg" alt="Norman Levine" style="width: 100%; height: 250px; object-fit: cover; border-radius: 0.375rem; margin-bottom: 1rem;">
+                    <h3>Norman Levine</h3>
+                    <div class="team-role">COO & Program Director</div>
+                    <div class="team-certs">
+                        <span class="cert-badge">Operations Leader</span>
+                        <span class="cert-badge">Program Management</span>
+                    </div>
+                    <p class="team-bio">Leads operational excellence and program delivery at RiskQ TPRM Exchange • Extensive experience in enterprise program management and risk operations • Expert in scaling security assessment programs and building high-performing analyst teams</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder's Story -->
+    <section>
+        <div class="container">
+            <h2>Founder's Story</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>From Practitioner to Thought Leader</h3>
+                    <p>After spending over two decades managing cybersecurity and third-party risk programs at Fortune 500 organizations, I witnessed the same problem repeatedly: vendor security assessments were too slow, too expensive, and too inconsistent.</p>
+                    <p>Enterprises wasted months chasing vendors for documentation. Vendors filled out the same questionnaires dozens of times. Security teams burned out from repetitive manual reviews. The process was broken—and no one was fixing it.</p>
+                    <p>In 2024, I published "Navigating Supply Chain Cyber Risk" with Taylor & Francis to document best practices and frameworks I developed over my career. But a book wasn't enough—I needed to build the solution.</p>
+                </div>
+                <div>
+                    <div class="card">
+                        <h3 style="margin-top: 0;">Amazon Best Seller</h3>
+                        <p><strong>"Navigating Supply Chain Cyber Risk"</strong></p>
+                        <p>Taylor & Francis, 2024</p>
+                        <p>A comprehensive framework for managing third-party cyber risk, based on 20+ years of real-world experience securing complex supply chains.</p>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">View on Amazon</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight" style="margin-top: 3rem;">
+                <p style="margin: 0; font-style: italic;">That's why I founded RiskQ TPRM Exchange—the industry's first marketplace connecting enterprises with pre-validated vendor security profiles, backed by certified analyst reviews and continuous monitoring. Today, as an advisory board member at Pace University and Seton Hall University, I'm shaping the next generation of cybersecurity professionals while running a platform that saves enterprises millions and gives vendors a better way to showcase their security excellence.</p>
+                <p style="margin-top: 1rem; margin-bottom: 0; font-weight: 600;">— Ariel Evans, Founder & CEO, RiskQ TPRM Exchange</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why RiskQ Has Unmatched Credibility -->
+    <section class="bg-blue">
+        <div class="container">
+            <h2 class="text-center">Why RiskQ Has Unmatched Credibility</h2>
+            <p class="text-center text-gray" style="margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto;">Our founder's credentials, academic contributions, and published research set RiskQ apart from competitors.</p>
+            
+            <div class="credentials-grid">
+                <div class="credential-card">
+                    <h4>Amazon Best Seller</h4>
+                    <ul>
+                        <li>"Navigating Supply Chain Cyber Risk" (Taylor & Francis, 2024)</li>
+                        <li>Available on Amazon and major academic publishers</li>
+                        <li>Comprehensive guide to third-party cyber risk management</li>
+                        <li>Adopted by universities and enterprise security teams</li>
+                    </ul>
+                </div>
+                <div class="credential-card">
+                    <h4>Professional Certifications</h4>
+                    <ul>
+                        <li>CISA (Certified Information Systems Auditor)</li>
+                        <li>CDPSE (Certified Data Privacy Solutions Engineer)</li>
+                        <li>20+ years of hands-on cybersecurity and risk management experience</li>
+                        <li>Former CISO and risk management leader at Fortune 500 organizations</li>
+                    </ul>
+                </div>
+                <div class="credential-card">
+                    <h4>Proven Track Record</h4>
+                    <ul>
+                        <li>Serial Entrepreneur with two successful exits: BMC and Kleiner Perkins</li>
+                        <li>Built and scaled cybersecurity programs across financial services, healthcare, and technology</li>
+                        <li>Former leadership roles at Fortune 500 organizations</li>
+                        <li>Track record of delivering enterprise-grade security solutions at scale</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section>
+        <div class="container">
+            <h2 class="text-center">Our Mission</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">To transform third-party risk management by creating the world's first marketplace that connects enterprises with verified vendors, making security assessments faster, more affordable, and more reliable.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Timeline -->
+    <section class="bg-gray">
+        <div class="container">
+            <h2 class="text-center">Our Journey</h2>
+            <p class="text-center text-gray" style="margin-bottom: 3rem;">Two decades of experience culminating in the industry's first TPRM marketplace.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2004-2024</div>
+                    <div class="timeline-content">
+                        <h4>20+ Years Industry Leadership</h4>
+                        <p>Built and led cybersecurity and risk management programs at Fortune 500 companies across financial services, healthcare, and technology sectors.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2022-2024</div>
+                    <div class="timeline-content">
+                        <h4>Academic & Advisory Roles</h4>
+                        <p>Joined advisory boards at Pace University and Seton Hall University to shape cybersecurity curriculum and bridge academia with industry practice.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-content">
+                        <h4>Published Author</h4>
+                        <p>Released 'Navigating Supply Chain Cyber Risk' with Taylor & Francis—a comprehensive framework for managing third-party cyber risk.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-content">
+                        <h4>RiskQ TPRM Exchange Founded</h4>
+                        <p>Launched the industry's first TPRM marketplace to solve the costly, time-consuming vendor security assessment problem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section>
+        <div class="container">
+            <h2 class="text-center">Our Core Values</h2>
+            <p class="text-center text-gray" style="margin-bottom: 3rem;">The principles that guide everything we do at RiskQ TPRM Exchange.</p>
+            
+            <div class="values-grid">
+                <div class="value-item">
+                    <h4>Trust & Transparency</h4>
+                    <p>We believe in verified security data and transparent vendor profiles. No hidden information, no surprises—just reliable intelligence.</p>
+                </div>
+                <div class="value-item">
+                    <h4>Collaborative Ecosystem</h4>
+                    <p>We bring enterprises and vendors together in a mutually beneficial marketplace that reduces friction and builds lasting relationships.</p>
+                </div>
+                <div class="value-item">
+                    <h4>Continuous Innovation</h4>
+                    <p>We're constantly improving our platform with new features, integrations, and capabilities to stay ahead of evolving security challenges.</p>
+                </div>
+                <div class="value-item">
+                    <h4>Quality & Excellence</h4>
+                    <p>Every security review is conducted by certified analysts. Every vendor profile is verified. We never compromise on quality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose RiskQ -->
+    <section class="bg-blue">
+        <div class="container">
+            <h2 class="text-center">Why Choose RiskQ?</h2>
+            <p class="text-center text-gray" style="margin-bottom: 3rem;">Credentials and experience that competitors cannot replicate.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <h4>Serial Entrepreneur with Proven Exits</h4>
+                    <p>Our founder has successfully built and exited companies acquired by BMC Software and Kleiner Perkins—bringing startup agility with Fortune 500 experience.</p>
+                </div>
+                <div class="card">
+                    <h4>Founded by an Amazon Best-Selling Author</h4>
+                    <p>Our founder literally wrote the book on supply chain cyber risk—published by Taylor & Francis and an Amazon best seller.</p>
+                </div>
+                <div class="card">
+                    <h4>20+ Years of Real-World Experience</h4>
+                    <p>Not a startup founder learning on the job—a seasoned CISO and risk management leader who's built and secured programs at Fortune 500 companies.</p>
+                </div>
+                <div class="card">
+                    <h4>CISA & CDPSE Certified</h4>
+                    <p>Industry-recognized certifications demonstrating deep expertise in information systems auditing and data privacy engineering.</p>
+                </div>
+                <div class="card">
+                    <h4>Industry's First TPRM Marketplace</h4>
+                    <p>We pioneered the concept of a vendor security marketplace—saving enterprises an average of $85,000 annually while reducing assessment time by 70%.</p>
+                </div>
+                <div class="card">
+                    <h4>Work with Industry Leaders</h4>
+                    <p>Join 500+ enterprises and vendors who trust RiskQ TPRM Exchange—built by experts, trusted by industry.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section>
+        <div class="container text-center">
+            <h2>Ready to Transform Your Vendor Risk Management?</h2>
+            <p class="text-gray" style="margin-bottom: 2rem; font-size: 1.1rem;">Join 500+ enterprises and vendors who trust RiskQ TPRM Exchange</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <button class="btn btn-primary" style="padding: 0.75rem 2rem; font-size: 1rem;">Request Demo</button>
+                <button class="btn" style="padding: 0.75rem 2rem; font-size: 1rem; border: 1px solid #2563eb; color: #2563eb; background: white;">Contact Us</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>RiskQ TPRM Exchange</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Marketplace</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Solutions</h4>
+                    <ul>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Security</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 RiskQ TPRM Exchange. All rights reserved. | Built by industry leaders, trusted by enterprises.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
